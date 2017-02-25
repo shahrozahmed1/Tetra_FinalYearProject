@@ -1,0 +1,133 @@
+ Error: INSERT INTO location(
+                    location_Animal, location_Latitude, location_Longitude,
+                    location_Altitude, location_Date, location_Time,
+                    location_Symbol, location_Description) values(
+                    'bt','-7.28053112','107.7620721',
+                    '1456.6','2015-12-03','1',
+                    'Navaid, Amber','BTE001 DG2')<br>Cannot add or update a child row: a foreign key constraint fails (`animal_data_visualisation`.`location`, CONSTRAINT `location_ibfk_1` FOREIGN KEY (`location_Animal`) REFERENCES `animal` (`animal_Initials`)) Error: INSERT INTO location(
+                    location_Animal, location_Latitude, location_Longitude,
+                    location_Altitude, location_Date, location_Time,
+                    location_Symbol, location_Description) values(
+                    'un','-7.2806857','107.7589511',
+                    '1496','2015-12-03','1',
+                    'Navaid, Blue','UN001 DG8')<br>Cannot add or update a child row: a foreign key constraint fails (`animal_data_visualisation`.`location`, CONSTRAINT `location_ibfk_1` FOREIGN KEY (`location_Animal`) REFERENCES `animal` (`animal_Initials`)) Error: INSERT INTO location(
+                    location_Animal, location_Latitude, location_Longitude,
+                    location_Altitude, location_Date, location_Time,
+                    location_Symbol, location_Description) values(
+                    'un','-7.28083072','107.7618386',
+                    '1460.1','2015-12-03','1',
+                    'Navaid, Blue','UN001 DG12')<br>Cannot add or update a child row: a foreign key constraint fails (`animal_data_visualisation`.`location`, CONSTRAINT `location_ibfk_1` FOREIGN KEY (`location_Animal`) REFERENCES `animal` (`animal_Initials`)) Error: INSERT INTO location(
+                    location_Animal, location_Latitude, location_Longitude,
+                    location_Altitude, location_Date, location_Time,
+                    location_Symbol, location_Description) values(
+                    'bt','-7.28052568','107.7614838',
+                    '1460','2015-12-11','1',
+                    'Navaid, Amber','BTE001 DG11')<br>Cannot add or update a child row: a foreign key constraint fails (`animal_data_visualisation`.`location`, CONSTRAINT `location_ibfk_1` FOREIGN KEY (`location_Animal`) REFERENCES `animal` (`animal_Initials`)) Error: INSERT INTO location(
+                    location_Animal, location_Latitude, location_Longitude,
+                    location_Altitude, location_Date, location_Time,
+                    location_Symbol, location_Description) values(
+                    'un','-7.27740407','107.7636727',
+                    '1433.6','2015-12-14','1',
+                    'Navaid, Blue','UN001 DB3')<br>Cannot add or update a child row: a foreign key constraint fails (`animal_data_visualisation`.`location`, CONSTRAINT `location_ibfk_1` FOREIGN KEY (`location_Animal`) REFERENCES `animal` (`animal_Initials`)) Error: INSERT INTO location(
+                    location_Animal, location_Latitude, location_Longitude,
+                    location_Altitude, location_Date, location_Time,
+                    location_Symbol, location_Description) values(
+                    'bt','-7.28053278','107.7618006',
+                    '1466.2','2015-12-18','1',
+                    'Navaid, Amber','BTE001 DG3')<br>Cannot add or update a child row: a foreign key constraint fails (`animal_data_visualisation`.`location`, CONSTRAINT `location_ibfk_1` FOREIGN KEY (`location_Animal`) REFERENCES `animal` (`animal_Initials`)) Error: INSERT INTO location(
+                    location_Animal, location_Latitude, location_Longitude,
+                    location_Altitude, location_Date, location_Time,
+                    location_Symbol, location_Description) values(
+                    'un','-7.28078642','107.7705616',
+                    '1338.2','2015-12-18','1',
+                    'Navaid, Blue','UN001 DG21')<br>Cannot add or update a child row: a foreign key constraint fails (`animal_data_visualisation`.`location`, CONSTRAINT `location_ibfk_1` FOREIGN KEY (`location_Animal`) REFERENCES `animal` (`animal_Initials`)) Error: INSERT INTO location(
+                    location_Animal, location_Latitude, location_Longitude,
+                    location_Altitude, location_Date, location_Time,
+                    location_Symbol, location_Description) values(
+                    'un','-7.28118623','107.7583659',
+                    '1509.4','2015-12-21','1',
+                    'Navaid, Blue','UN001 DG31')<br>Cannot add or update a child row: a foreign key constraint fails (`animal_data_visualisation`.`location`, CONSTRAINT `location_ibfk_1` FOREIGN KEY (`location_Animal`) REFERENCES `animal` (`animal_Initials`)) Error: INSERT INTO location(
+                    location_Animal, location_Latitude, location_Longitude,
+                    location_Altitude, location_Date, location_Time,
+                    location_Symbol, location_Description) values(
+                    'bs','-7.2784312','107.7611905',
+                    '1442','2015-12-22','1',
+                    'Navaid, Amber','BSH001 KR')<br>Cannot add or update a child row: a foreign key constraint fails (`animal_data_visualisation`.`location`, CONSTRAINT `location_ibfk_1` FOREIGN KEY (`location_Animal`) REFERENCES `animal` (`animal_Initials`)) Error: INSERT INTO location(
+                    location_Animal, location_Latitude, location_Longitude,
+                    location_Altitude, location_Date, location_Time,
+                    location_Symbol, location_Description) values(
+                    'uc','-7.2784312','107.7611905',
+                    '1445','2015-12-22','1',
+                    'Navaid, Blue','UC001 KR4')<br>Cannot add or update a child row: a foreign key constraint fails (`animal_data_visualisation`.`location`, CONSTRAINT `location_ibfk_1` FOREIGN KEY (`location_Animal`) REFERENCES `animal` (`animal_Initials`)) Error: INSERT INTO location(
+                    location_Animal, location_Latitude, location_Longitude,
+                    location_Altitude, location_Date, location_Time,
+                    location_Symbol, location_Description) values(
+                    'uc','-7.27831375','107.7611898',
+                    '1470','2015-12-22','1',
+                    'Navaid, Blue','UC002 KR3')<br>Cannot add or update a child row: a foreign key constraint fails (`animal_data_visualisation`.`location`, CONSTRAINT `location_ibfk_1` FOREIGN KEY (`location_Animal`) REFERENCES `animal` (`animal_Initials`)) Error: INSERT INTO location(
+                    location_Animal, location_Latitude, location_Longitude,
+                    location_Altitude, location_Date, location_Time,
+                    location_Symbol, location_Description) values(
+                    'uc','-7.27835903','107.761172',
+                    '1471','2015-12-22','1',
+                    'Navaid, Blue','UC003 KR2')<br>Cannot add or update a child row: a foreign key constraint fails (`animal_data_visualisation`.`location`, CONSTRAINT `location_ibfk_1` FOREIGN KEY (`location_Animal`) REFERENCES `animal` (`animal_Initials`)) Error: INSERT INTO location(
+                    location_Animal, location_Latitude, location_Longitude,
+                    location_Altitude, location_Date, location_Time,
+                    location_Symbol, location_Description) values(
+                    'uc','-7.27829595','107.7611444',
+                    '1471','2015-12-22','1',
+                    'Navaid, Blue','UC004 KR1')<br>Cannot add or update a child row: a foreign key constraint fails (`animal_data_visualisation`.`location`, CONSTRAINT `location_ibfk_1` FOREIGN KEY (`location_Animal`) REFERENCES `animal` (`animal_Initials`)) Error: INSERT INTO location(
+                    location_Animal, location_Latitude, location_Longitude,
+                    location_Altitude, location_Date, location_Time,
+                    location_Symbol, location_Description) values(
+                    'uc','-7.27771929','107.7608785',
+                    '1461','2015-12-22','1',
+                    'Navaid, Blue','UC005 KR')<br>Cannot add or update a child row: a foreign key constraint fails (`animal_data_visualisation`.`location`, CONSTRAINT `location_ibfk_1` FOREIGN KEY (`location_Animal`) REFERENCES `animal` (`animal_Initials`)) Error: INSERT INTO location(
+                    location_Animal, location_Latitude, location_Longitude,
+                    location_Altitude, location_Date, location_Time,
+                    location_Symbol, location_Description) values(
+                    'bs','-7.27845104','107.760901',
+                    '1504','2015-12-23','1',
+                    'Navaid, Amber','BSH001 DG2')<br>Cannot add or update a child row: a foreign key constraint fails (`animal_data_visualisation`.`location`, CONSTRAINT `location_ibfk_1` FOREIGN KEY (`location_Animal`) REFERENCES `animal` (`animal_Initials`)) Error: INSERT INTO location(
+                    location_Animal, location_Latitude, location_Longitude,
+                    location_Altitude, location_Date, location_Time,
+                    location_Symbol, location_Description) values(
+                    'bs','-7.27842167','107.7612719',
+                    '1479.7','2015-12-23','1',
+                    'Navaid, Amber','BSH002 DG')<br>Cannot add or update a child row: a foreign key constraint fails (`animal_data_visualisation`.`location`, CONSTRAINT `location_ibfk_1` FOREIGN KEY (`location_Animal`) REFERENCES `animal` (`animal_Initials`)) Error: INSERT INTO location(
+                    location_Animal, location_Latitude, location_Longitude,
+                    location_Altitude, location_Date, location_Time,
+                    location_Symbol, location_Description) values(
+                    'bo','-7.28073666','107.7594853',
+                    '1487.5','2015-12-23','1',
+                    'Navaid, Amber','BOE001 DG')<br>Cannot add or update a child row: a foreign key constraint fails (`animal_data_visualisation`.`location`, CONSTRAINT `location_ibfk_1` FOREIGN KEY (`location_Animal`) REFERENCES `animal` (`animal_Initials`)) Error: INSERT INTO location(
+                    location_Animal, location_Latitude, location_Longitude,
+                    location_Altitude, location_Date, location_Time,
+                    location_Symbol, location_Description) values(
+                    'un','-7.27805145','107.7612334',
+                    '1469.2','2015-12-23','1',
+                    'Navaid, Blue','UN001 DG9')<br>Cannot add or update a child row: a foreign key constraint fails (`animal_data_visualisation`.`location`, CONSTRAINT `location_ibfk_1` FOREIGN KEY (`location_Animal`) REFERENCES `animal` (`animal_Initials`)) Error: INSERT INTO location(
+                    location_Animal, location_Latitude, location_Longitude,
+                    location_Altitude, location_Date, location_Time,
+                    location_Symbol, location_Description) values(
+                    'un','-7.28050921','107.7612213',
+                    '1463.4','2016-01-07','1',
+                    'Fishing Area','UN002 DG3')<br>Cannot add or update a child row: a foreign key constraint fails (`animal_data_visualisation`.`location`, CONSTRAINT `location_ibfk_1` FOREIGN KEY (`location_Animal`) REFERENCES `animal` (`animal_Initials`)) Error: INSERT INTO location(
+                    location_Animal, location_Latitude, location_Longitude,
+                    location_Altitude, location_Date, location_Time,
+                    location_Symbol, location_Description) values(
+                    'sf','-7.27821119','107.763189',
+                    '1422','2016-02-23','1',
+                    'Food Source','SFE001 ER1')<br>Cannot add or update a child row: a foreign key constraint fails (`animal_data_visualisation`.`location`, CONSTRAINT `location_ibfk_1` FOREIGN KEY (`location_Animal`) REFERENCES `animal` (`animal_Initials`)) Error: INSERT INTO location(
+                    location_Animal, location_Latitude, location_Longitude,
+                    location_Altitude, location_Date, location_Time,
+                    location_Symbol, location_Description) values(
+                    'sf','-7.27829251','107.7631895',
+                    '1424','2016-02-25','1',
+                    'ATV','SFE001 JT3')<br>Cannot add or update a child row: a foreign key constraint fails (`animal_data_visualisation`.`location`, CONSTRAINT `location_ibfk_1` FOREIGN KEY (`location_Animal`) REFERENCES `animal` (`animal_Initials`)) Error: INSERT INTO location(
+                    location_Animal, location_Latitude, location_Longitude,
+                    location_Altitude, location_Date, location_Time,
+                    location_Symbol, location_Description) values(
+                    'f0','-7.2782389','107.7630896',
+                    '','2016-02-25','1',
+                    'Navaid, Amber','F002 AC')<br>Cannot add or update a child row: a foreign key constraint fails (`animal_data_visualisation`.`location`, CONSTRAINT `location_ibfk_1` FOREIGN KEY (`location_Animal`) REFERENCES `animal` (`animal_Initials`))
