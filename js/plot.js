@@ -25,7 +25,7 @@
          var animal_id = jsArray[0][0];
 
          var map = new google.maps.Map(document.getElementById('map'), {
-             zoom: 17,
+             zoom: 16,
              // first coordinate of the loris
              center: coordinates[0],
 

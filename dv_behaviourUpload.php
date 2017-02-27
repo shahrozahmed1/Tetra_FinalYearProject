@@ -1,4 +1,17 @@
-<?php include 'dv_navigation.php'; ?>
+<?php
+
+ob_start();
+session_start();
+if(!isset($_SESSION['login_user']))
+{
+    // not logged in
+    header('Location: index.php');
+    exit();
+}
+
+include 'dv_navigation.php'; 
+
+?>
 
   <!DOCTYPE html>
 
@@ -20,7 +33,7 @@
         <input type="file" name="bcsv" id="csv_id">
         <button type="sumbit" name="submit2">Upload</button>
       </form>
-      
+
       <div id="text-update"></div>
 
     </div>
@@ -96,8 +109,8 @@ if(isset($_POST['submit2'])) {
                 $fPosture = format_null($posture);
                 
                 $formated_date = format_Date($date);
-
-                // ignore first line 
+                
+                // ignore first line
                 if($id !== 'Observation No') {
                     $behaviourData = "INSERT INTO observations(
                     observation_ID, observation_Animal, observation_Date,

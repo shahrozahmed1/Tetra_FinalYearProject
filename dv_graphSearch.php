@@ -1,3 +1,15 @@
+<?php 
+ob_start();
+session_start();
+if(!isset($_SESSION['login_user']))
+{
+    // not logged in
+    header('Location: index.php');
+    exit();
+}
+
+?>
+
 <!DOCTYPE html>
 <html>
 

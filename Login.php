@@ -1,107 +1,25 @@
-<!DOCTYPE html>
-<html>
-<style>
-form {
-    border: 3px solid #f1f1f1;
-}
+<?php
 
-input[type=text], input[type=password] {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-}
-
-button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-}
-
-.cancelbtn {
-    width: auto;
-    padding: 10px 18px;
-    background-color: #f44336;
-}
-
-.imgcontainer {
-    text-align: center;
-    margin: 24px 0 12px 0;
-}
-
-img.avatar {
-    width: 40%;
-    border-radius: 50%;
-}
-
-.container {
-    padding: 16px;
-}
-
-
-/* Change styles for span and cancel button on extra small screens */
-@media screen and (max-width: 300px) {
-    span.psw {
-       display: block;
-       float: none;
-    }
-    .cancelbtn {
-       width: 100%;
-    }
-}
-</style>
-<body>
-
-<h2>Login Form</h2>
-
-<form action="/dv_mapSearch.php">
-  <div class="imgcontainer">
-    <img src="img_avatar2.png" alt="Avatar" class="avatar">
-  </div>
-
-  <div class="container">
-    <label><b>Username</b></label>
-    <input type="text" placeholder="Enter Username" name="uname" required>
-
-    <label><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="psw" required>
-        
-    <button type="submit">Login</button>
-    <input type="checkbox" checked="checked"> Remember me
-  </div>
-
-  <div class="container" style="background-color:#f1f1f1">
-    <button type="button" class="cancelbtn">Cancel</button>
-  </div>
-</form>
-
-</body>
-</html>
-
-<?php 
-
-
- ob_start();
   include("dv_dbConnection.php");
   session_start();
 
-  $myusername = mysqli_real_escape_string($con,$_POST['uname']);
-  $mypassword = mysqli_real_escape_string($con,$_POST['psw']); 
+  echo "gets here";
+
+  $myusername = mysqli_real_escape_string($con,$_POST['username']);
+  $mypassword = mysqli_real_escape_string($con,$_POST['password']); 
       
-  $sql = "SELECT user_ID FROM accounts WHERE account_username = '$myusername' and account_password = '$mypassword'";
+  $sql = "SELECT user_ID FROM account WHERE account_username = '$myusername' and account_password = '$mypassword'";
   $result = mysqli_query($con,$sql);
-  $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+  $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
   $active = $row['active'];
       
   $count = mysqli_num_rows($result);
      
   if($count == 1) {
+
+    session_register("myusername");
+    $_SESSION['login_user'] = $myusername;
+
     $permissions = mysqli_query(
       $con,
       "SELECT admin_permission FROM accounts 
@@ -112,11 +30,10 @@ img.avatar {
         $_SESSION['admin_is_logged'] = true;
 		  }
       $_SESSION['login_user'] = "myusername";
-      header('Location: homepage.php');
+      header('Location: dv_map.php');
       exit();
   } else {
       header('Location: index.php');
-      exit();  
+      exit();
   }
-
 ?>

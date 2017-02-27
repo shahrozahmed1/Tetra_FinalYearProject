@@ -1,6 +1,15 @@
-<?php include('dv_navigation.php');
+<?php 
 
+ob_start();
 session_start();
+if(!isset($_SESSION['login_user']) || !isset($_SESSION['admin_is_logged']))
+{
+    // not logged in
+    header('Location: index.php');
+    exit();
+}
+
+include('dv_navigation.php');
 ?>
 
   <!DOCTYPE html>

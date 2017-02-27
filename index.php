@@ -1,64 +1,81 @@
 <!DOCTYPE html>
 <html>
+<style>
+  form {
+    border: 3px solid #f1f1f1;
+  }
+  
+  input[type=text],
+  input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+  }
+  
+  button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+  }
+  
+  .cancelbtn {
+    width: auto;
+    padding: 10px 18px;
+    background-color: #f44336;
+  }
+  
+  .imgcontainer {
+    text-align: center;
+    margin: 24px 0 12px 0;
+  }
+  
+  img.avatar {
+    width: 40%;
+    border-radius: 50%;
+  }
+  
+  .container {
+    padding: 16px;
+  }
+  /* Change styles for span and cancel button on extra small screens */
+  
+  @media screen and (max-width: 300px) {
+    span.psw {
+      display: block;
+      float: none;
+    }
+  }
+</style>
 
-<?php
-include 'dv_mapSearch.php';
-?>
+<body>
 
-  <head>
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-    <meta charset="utf-8">
-    <title>Tetra</title>
-    <style>
-      /* Always set the map height explicitly to define the size of the div
-* element that contains the map. */
-      
-      #map {
-        height: 80%;
-        min-height: 590px;
-        width: 80%;
-        float: right;
-        top: 3%;
-      }
-    </style>
-  </head>
+  <h2>Login Form</h2>
 
-  <body>
+<form name="login_form" action="dv_login.php" method="post">
+    <div class="imgcontainer">
+      <img src="images/lpf_logo.png" alt="Avatar" class="avatar">
+    </div>
 
-    <script>
-      var jsArray = <?php echo json_encode($database_array); ?>;
-      window.localStorage.setItem("jsArray", JSON.stringify(jsArray));
+    <div class="container">
+      <label><b>Username</b></label>
+      <input type="text" placeholder="Enter Username" name="username" required>
 
-      // set display marker checkbox
-      var jsMarkers = <?php echo json_encode($displayMarkers); ?>;
-      window.localStorage.setItem("markers", JSON.stringify(jsMarkers));
+      <label><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" name="password" required>
 
-      // set display marker cluster checkbox
-      var jsClusters = <?php echo json_encode($displayCluster); ?>;
-      window.localStorage.setItem("clusters", JSON.stringify(jsClusters));
+      <button type="submit">Login</button>
+      <input type="checkbox" checked="checked"> Remember me?
+    </div>
 
-      // set  display heatmap checkbox
+  </form>
 
-      var jsHeatmap = <?php echo json_encode($displayHeatmap); ?>;
-      window.localStorage.setItem("heatmap", JSON.stringify(jsHeatmap));
-    </script>
-
-      <div id="map"></div>
-
-      <!-- javascript -->
-      <script type="text/javascript" src="js/plot.js">
-      </script>
-
-      <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyATUGW7_9hN-yhFDWCGXK0i2dOdPe_DTsA&libraries=visualization&callback=initMap">
-      </script>
-
-  </body>
+</body>
 
 </html>
-
-<?php
-
-// Closes the connection with the database
-mysqli_close($con);
-
-?>
