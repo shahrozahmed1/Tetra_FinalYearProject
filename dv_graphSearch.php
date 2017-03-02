@@ -1,6 +1,6 @@
 <?php 
 ob_start();
-session_start();
+// session_start();
 if(!isset($_SESSION['login_user']))
 {
     // not logged in
@@ -97,10 +97,8 @@ if(!isset($_SESSION['login_user']))
 
 <?php
 
-
 ob_start();
 include("dv_dbConnection.php");
-session_start();
 
 $behaviourDB_array = array();
 

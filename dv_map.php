@@ -8,14 +8,12 @@ if(!isset($_SESSION['login_user']))
     exit();
 }
 
+include 'dv_navigation.php'; 
+include 'dv_mapSearch.php';
 ?>
 
 <!DOCTYPE html>
 <html>
-
-<?php
-include 'dv_mapSearch.php';
-?>
 
   <head>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">

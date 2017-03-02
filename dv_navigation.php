@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 
@@ -6,6 +5,9 @@
   <style>
     body {
       margin: 0;
+      height: 100vh;
+      background: url("images/loris_venom.jpg") 50% fixed;
+      background-size: cover;
     }
     
     ul {
@@ -64,21 +66,20 @@
     <li><a href="dv_map.php">Map Analysis</a></li>
     <li><a href="dv_graph.php">Graph Analysis</a></li>
 
-    <?php session_start();
-if($_SESSION['admin_is_logged']) {?>
+    <?php
+
+if(isset($_SESSION['admin_is_logged'])) {?>
       <li><a href="dv_upload.php">Upload Data</a></li>
       <li><a href="dv_addAnimal.php">Insert Animal</a></li>
-      <li><a href="dv_addAdmin.php">Insert Admin</a></li>
-      <li><a href="dv_about.php">About</a></li>
+      <li><a href="dv_addUser.php">Insert User</a></li>
       <?php } ?>
 
+        <li><a href="dv_about.php">About</a></li>
         <ri><a href="dv_logout.php">Log Out</a></ri>
   </ul>
 
-  <div style="padding:20px;margin-top:45px;background-color:DarkSeaGreen; min-height:700px; height:100%;">
-    <!--  background-color: F3EEE5; -->
+  <div style="padding:20px;margin-top:45px;background-color:rgba(143,188,143, 0.987); min-height:650px; height:100%;">
 
 </body>
 
 </html>
-

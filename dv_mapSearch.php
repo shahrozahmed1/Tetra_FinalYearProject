@@ -1,6 +1,5 @@
-<?php 
+<?php
 ob_start();
-session_start();
 if(!isset($_SESSION['login_user']))
 {
     // not logged in
@@ -9,8 +8,6 @@ if(!isset($_SESSION['login_user']))
 }
 
 ?>
-
-<?php include 'dv_navigation.php'; ?>
 
   <!DOCTYPE html>
   <html>
@@ -51,108 +48,108 @@ if(!isset($_SESSION['login_user']))
   <body>
 
     <div class="errorClass">
-      <span id="update-text" style="color:red"> 
-      </div>
+      <span id="update-text" style="color:red">
+</div>
 
-      <div class="sidebar">
+<div class="sidebar">
 
-        <ul class="filter_nav">
+<ul class="filter_nav">
 
-          <form action="<?=$_SERVER['PHP_SELF'];?>" method="post">
-            <div align="center">
-              <input type="text" name="search" maxlength="3" placeholder "Search for animal.."/>
-              <input type="submit" value="Search" />
-            </div>
+<form action="<?=$_SERVER['PHP_SELF'];?>" method="post">
+<div align="center">
+<input type="text" name="search" maxlength="3" placeholder "Search for animal.."/>
+    <input type="submit" value="Search" />
+</div>
 
-            <br>
-            <div align="left">
-              <input type="checkbox" name="markers" id="markers" onclick="enableMarkeredTraj()" /> Markered Trajectories
-              <br>
-              <input type="checkbox" name="clusters" id="clusters" onclick="enableClusters()" /> Markers Clustering
-              <br>
-              <input type="checkbox" name="heatmap" id="heatmap" onclick="disableAllMarkers()" /> Heatmap
-            </div>
+<br>
+<div align="left">
+<input type="checkbox" name="markers" id="markers" onclick="enableMarkeredTraj()" /> Marked Trajectories
+<br>
+<input type="checkbox" name="clusters" id="clusters" onclick="enableClusters()" /> Marker Clustering
+<br>
+<input type="checkbox" name="heatmap" id="heatmap" onclick="disableAllMarkers()" /> Heatmap
+</div>
 
-            <!-- Align it in the middle of the -->
-            <br>
-            <div align="center">
-              <u><b>Refine by</b></u>
-            </div>
+<!-- Align it in the middle of the -->
+<br>
+<div align="center">
+<u><b>Refine by</b></u>
+</div>
 
-            <div align="left">
-              <br>
-              <b> Date/Time </b>
-              <br> <i> From: </i>
-              <br>
-              <input type="date" name="fdate">
-              <br>
-              <input type="time" name="ftime">
-              <br>
-              <i> To: </i>
-              <br>
-              <input type="date" name="tdate">
-              <br>
-              <input type="time" name="ttime">
-              <br>
-              <br> <b> Altitude </b>
-              <br> <i>Min:</i>
-              <input type="number" name="minAlt" id="inputMin" min="0" max="5000" maxlength="4">
-              <i> &nbsp; Max:</i>
-              <input type="number" name="maxAlt" id="inputMax" min="0" max="5000" maxlength="4">
-              <br>
-              <br>
-            </div>
+<div align="left">
+<br>
+<b> Date/Time </b>
+<br> <i> From: </i>
+<br>
+<input type="date" name="fdate">
+<br>
+<input type="time" name="ftime">
+<br>
+<i> To: </i>
+<br>
+<input type="date" name="tdate">
+<br>
+<input type="time" name="ttime">
+<br>
+<br> <b> Altitude </b>
+<br> <i>Min:</i>
+<input type="number" name="minAlt" id="inputMin" min="0" max="5000" maxlength="4">
+<i> &nbsp; Max:</i>
+<input type="number" name="maxAlt" id="inputMax" min="0" max="5000" maxlength="4">
+<br>
+<br>
+</div>
 
-            <div align="center">
-              <u><b>  Animal Details </b></u>
-              <br>
-              <br>
-              <table border=1 width=150 cellpadding=0>
-                <tr>
-                  <td colspan=2>
-                    ID: <span id="initialsId" style="color:blue">  </span>
-                  </td>
-                </tr>
-                <tr>
-                  <td colspan=2>
-                    Name: <span id="nameId" style="color:blue">  </span>
-                  </td>
-                </tr>
-                <tr>
-                  <td colspan=2>
-                    Sex:
-                    <span id="sexId" style="color:blue">  </span>
-                  </td>
-                </tr>
-                <tr>
-                  <td colspan=2>
-                    Age Category:
-                    <span id="ageCatId" style="color:blue">  </span>
-                  </td>
-                </tr>
-                <tr>
-                  <td colspan=2>
-                    Mother:
-                    <span id="motherId" style="color:blue">  </span>
-                  </td>
-                </tr>
-                <tr>
-                  <td colspan=2>
-                    Partner:
-                    <span id="partnerId" style="color:blue">  </span>
-                  </td>
-                </tr>
-              </table>
-              <br>
+<div align="center">
+<u><b>  Animal Details </b></u>
+<br>
+<br>
+<table border=1 width=150 cellpadding=0>
+<tr>
+<td colspan=2>
+ID: <span id="initialsId" style="color:blue">  </span>
+      </td>
+      </tr>
+      <tr>
+        <td colspan=2>
+          Name: <span id="nameId" style="color:blue">  </span>
+        </td>
+      </tr>
+      <tr>
+        <td colspan=2>
+          Sex:
+          <span id="sexId" style="color:blue">  </span>
+        </td>
+      </tr>
+      <tr>
+        <td colspan=2>
+          Age Category:
+          <span id="ageCatId" style="color:blue">  </span>
+        </td>
+      </tr>
+      <tr>
+        <td colspan=2>
+          Mother:
+          <span id="motherId" style="color:blue">  </span>
+        </td>
+      </tr>
+      <tr>
+        <td colspan=2>
+          Partner:
+          <span id="partnerId" style="color:blue">  </span>
+        </td>
+      </tr>
+      </table>
+      <br>
 
-              <button onclick="myFunction()">Print this page</button>
-            </div>
+      <button onclick="myFunction()">Print this page</button>
+    </div>
 
-          </form>
+    </form>
 
-        </ul>
+    </ul>
 
-      </div>
+    </div>
 
   </body>
 
@@ -296,12 +293,12 @@ if(isset($_POST['search'])) {
     $count = mysqli_num_rows($filter);
     
     if($count == 0) {
-        $output = "<b>".$searchq."</b> could not be found, please enter animal initials again!";
-        
+        $output = "Error: Could not find any results for <b>".$searchq."</b> with the refined settings, please try again!";
+            
         echo "
         <script>
-        document.getElementById('update-text').innerHTML = 'Error: \'<b>".$searchq."</b>\' could not be found, please try again';
-        </script>
+        document.getElementById('update-text').innerHTML = 'Error: Could not find any results for <b>".$searchq."</b> with the refined settings, please try again!';
+            </script>
         ";
         
         

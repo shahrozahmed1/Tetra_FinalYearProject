@@ -102,8 +102,8 @@ include('dv_navigation.php');
           <td colspan=2>
           </td>
           <td colspan=2>
-            <input class="button" type="submit" name="addBtn" value="Add">
             <input class="button" type="submit" name="deleteBtn" value="Delete">
+             <input class="button" type="submit" name="addBtn" value="Add">
           </td>
         </tr>
       </table>
@@ -189,8 +189,6 @@ if (isset($_POST['addBtn'])) {
     mysqli_close($con);
 }
 else if (isset($_POST['deleteBtn'])) {
-    
-    echo '<script> alert("hello world") </script>';
     
     if(empty($initials)){
         die("<font color='red'>Warning: Animal initials must be provided in order to delete a record! </font>");
