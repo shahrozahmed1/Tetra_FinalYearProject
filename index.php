@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <title>Tetra Login Page</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-
-    <style>
+    <link rel="stylesheet" type="text/css" href="styles/styles.css">
+    <!--<style>
 
         body {
             height: 100vh;
@@ -105,7 +105,7 @@
             border-bottom-width: 7px;
         }
 
-    </style>
+    </style>-->
 
 </head>
 

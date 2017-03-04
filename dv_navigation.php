@@ -19,7 +19,7 @@
       position: fixed;
       top: 0;
       width: 100%;
-      min-width: 700px;
+      min-width: 750px;
     }
     
     li {
@@ -78,7 +78,9 @@ if(isset($_SESSION['admin_is_logged'])) {?>
         <ri><a href="dv_logout.php">Log Out</a></ri>
   </ul>
 
-  <div style="padding:20px;margin-top:45px;background-color:rgba(143,188,143, 0.987); min-height:650px; height:100%;">
+  <div style="padding:30px; margin-top:45px; top: 5%; background-color:rgba(143,188,143, 0.98); height:100%;">
+
+  
 
 </body>
 

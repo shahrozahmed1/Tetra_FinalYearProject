@@ -16,12 +16,32 @@ include('dv_navigation.php');
 
   <head>
 
+    <link rel="stylesheet" type="text/css" href="styles/styles.css">
+
+    <style>
+      table {
+        border-collapse: collapse;
+        width: 20%;
+      }
+      
+      th,
+      td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+      }
+      
+      tr:hover {
+        background-color: #f5f5f5
+      }
+    </style>
+
     <title>Insert New User</title>
   </head>
 
   <body>
-    <h3>Insert New Animal</h3>
-    <form name="animal_form" action="<?= $_SERVER['PHP_SELF']; ?>" method="post">
+    <h3>Insert New User</h3>
+    <form name="insert-animal-frm" action="<?= $_SERVER['PHP_SELF']; ?>" method="post">
       <table border=5 width=150 cellpadding=10>
 
         <tr>
@@ -42,17 +62,19 @@ include('dv_navigation.php');
           </td>
         </tr>
 
-
         <tr>
           <td colspan=2>
             <b>Administrative Rights</b>
           </td>
           <td colspan=2>
-            <input type="checkbox" name="permissions"> Enable
+            <label class="control control--checkbox">Enable
+              <input type="checkbox" name="permissions" id="perm_id" />
+              <div class="control__indicator"></div>
+            </label>
+
             <br>
           </td>
         </tr>
-
 
         <td colspan=2>
         </td>
@@ -96,9 +118,9 @@ if (isset($_POST['addBtn'])) {
     $permission = $_POST['permissions'];
     $perm = false;
     if ($permission == on) {
-      $permission_bool = true; 
-         }
-
+        $permission_bool = true;
+    }
+    
     if( $name == "" || $password == "" ) {
         
         if(empty($name)){

@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 ob_start();
 session_start();
@@ -16,12 +16,34 @@ include('dv_navigation.php');
 
   <head>
 
+    <link rel="stylesheet" type="text/css" href="styles/styles.css">
+
+    <style>
+      table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+      
+      th,
+      td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+      }
+      
+      tr:hover {
+        background-color: #f5f5f5
+      }
+
+    </style>
+
     <title>Insert Animal Data</title>
   </head>
 
   <body>
     <h3>Insert New Animal</h3>
-    <form name="animal_form" action="<?= $_SERVER['PHP_SELF']; ?>" method="post">
+
+    <form class="insert-animal-frm" name="animal_form" action="<?= $_SERVER['PHP_SELF']; ?>" method="post">
       <table border=5 width=150 cellpadding=10>
         <tr>
           <td colspan=2>
@@ -46,11 +68,24 @@ include('dv_navigation.php');
             <b>Sex</b>
           </td>
           <td colspan=2>
-            <input type="radio" name="sex_id" value="m">Male
-            <br>
-            <input type="radio" name="sex_id" value="f">Female
-            <br>
-            <input type="radio" name="sex_id" value="u">Unknown
+
+            <label class="control control--radio">Male
+              <input type="radio" name="sex_id" id="m_id" value="m">
+              <div class="control__indicator"></div>
+            </label>
+
+
+            <label class="control control--radio">Female
+              <input type="radio" name="sex_id" id="f_id" value="f">
+              <div class="control__indicator"></div>
+            </label>
+
+
+            <label class="control control--radio">Unknown
+              <input type="radio" name="sex_id" value="u" id="un_id">
+              <div class="control__indicator"></div>
+            </label>
+
           </td>
         </tr>
 
@@ -103,7 +138,7 @@ include('dv_navigation.php');
           </td>
           <td colspan=2>
             <input class="button" type="submit" name="deleteBtn" value="Delete">
-             <input class="button" type="submit" name="addBtn" value="Add">
+            <input class="button" type="submit" name="addBtn" value="Add">
           </td>
         </tr>
       </table>
@@ -132,7 +167,7 @@ $initials;
 if (isset($_POST['animal_initials_id'])) {
     
     $initials = $_POST['animal_initials_id'];
-
+    
 }
 
 if (isset($_POST['addBtn'])) {
@@ -206,13 +241,13 @@ else if (isset($_POST['deleteBtn'])) {
     if($row_cnt > 0)
     {
         $retval = mysqli_query($con, $sql);
-         echo "<span style='color:green; background-color: white;'>  '<b>".$initials."</b>' has been deleted successfull!</span>";
+        echo "<span style='color:green; background-color: white;'>  '<b>".$initials."</b>' has been deleted successfull!</span>";
     }
     else
     {
-
-         echo "<span style='color:red; background-color: white;'>  Error: '<b>".$initials."</b>' could not be found, please try again!</span>";
-
+        
+        echo "<span style='color:red; background-color: white;'>  Error: '<b>".$initials."</b>' could not be found, please try again!</span>";
+        
     }
     
 }

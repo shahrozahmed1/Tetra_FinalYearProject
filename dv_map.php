@@ -1,4 +1,4 @@
-<?php 
+<?php
 ob_start();
 session_start();
 if(!isset($_SESSION['login_user']))
@@ -8,28 +8,28 @@ if(!isset($_SESSION['login_user']))
     exit();
 }
 
-include 'dv_navigation.php'; 
+include 'dv_navigation.php';
 include 'dv_mapSearch.php';
 ?>
 
-<!DOCTYPE html>
-<html>
+  <!DOCTYPE html>
+  <html>
 
   <head>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="styles/styles.css">
     <title>Tetra</title>
     <style>
       /* Always set the map height explicitly to define the size of the div
 * element that contains the map. */
-      
-      #map {
-        height: 80%;
-        min-height: 590px;
-        width: 80%;
-        float: right;
-        top: 3%;
-      }
+      /*#map {
+height: 80%;
+min-height: 590px;
+width: 80%;
+float: right;
+top: 3%;
+}*/
     </style>
   </head>
 
@@ -55,18 +55,18 @@ include 'dv_mapSearch.php';
 
       <div id="map"></div>
 
-      <!-- javascript -->
-      <script type="text/javascript" src="js/plot.js">
-      </script>
+    <!-- javascript -->
+    <script type="text/javascript" src="js/plot.js">
+    </script>
 
-      <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyATUGW7_9hN-yhFDWCGXK0i2dOdPe_DTsA&libraries=visualization&callback=initMap">
-      </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyATUGW7_9hN-yhFDWCGXK0i2dOdPe_DTsA&libraries=visualization&callback=initMap">
+    </script>
 
   </body>
 
-</html>
+  </html>
 
-<?php
+  <?php
 
 // Closes the connection with the database
 mysqli_close($con);

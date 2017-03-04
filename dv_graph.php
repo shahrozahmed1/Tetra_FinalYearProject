@@ -1,4 +1,3 @@
-
 <?php
 
 ob_start();
@@ -19,29 +18,28 @@ include 'dv_graphSearch.php';
   <html>
 
   <head>
-
+    <link rel="stylesheet" type="text/css" href="styles/styles.css">
     <title>
       Graph Analysis
     </title>
 
-    <style>
-      #chart-container {
-        height: auto;
-        width: 80%;
-        float: right;
-        top: 10%;
-      }
-    </style>
+    <!--
+<style>
+#chart-container {
+    height: auto;
+    width: 80%;
+    float: right;
+    top: 10%;
+}
+</style>
+-->
 
   </head>
 
   <body>
-
-    <div id="chart-container">
-      <br>
-      <br>
-      <canvas id="mycanvas"> </canvas>
-    </div>
+      <div id="chart-container">
+        <canvas id="mycanvas"> </canvas>
+      </div>
 
     <!-- javascript -->
     <script type="text/javascript" src="js/jquery.min.js"></script>

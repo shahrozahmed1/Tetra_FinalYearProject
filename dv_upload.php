@@ -11,107 +11,221 @@ if(!isset($_SESSION['login_user']) || !isset($_SESSION['admin_is_logged']))
 
 ?>
 
-<!DOCTYPE html>
+  <!DOCTYPE html>
 
-<?php
+  <?php
 include 'dv_navigation.php';
 ?>
 
-  <html>
+    <html>
 
-  <script>
-    function locationDelete() {
-      if (confirm("You are about to delete all location records!") == true) {
-        document.getElementById("deleteGPSId").value = "Deleted";
+    <script>
+      function locationDelete() {
+        if (confirm("You are about to delete all location records!") == true) {
+          document.getElementById("deleteGPSId").value = "Deleted";
+        }
+
       }
 
-    }
 
+      function behaviourDelete() {
+        if (confirm("You are about to delete all behaviour records!") == true) {
+          document.getElementById("bDeleteId").value = "Deleted";
+        }
 
-    function behaviourDelete() {
-      if (confirm("You are about to delete all location records!") == true) {
-        document.getElementById("bDeleteId").value = "Deleted";
       }
-
-    }
-  </script>
+    </script>
 
 
-  <head>
+    <head>
 
-    <style>
-      .leftpanel {
-        float: left;
-      }
-    </style>
-    </style>
 
-    <title>Upload</title>
-  </head>
+      <style>
+        input {
+          -webkit-appearance: none;
+          -moz-appearance: none;
+          padding: 3px;
+          margin: 5px 0;
+          border: solid 1px #999;
+        }
+        
+        .leftpanel {
+          float: left;
+          margin-left: 50px;
+        }
+        
+        .rightpanel {
+          float: left;
+          margin-left: 50px;
+        }
+        
+        table {
+          border-collapse: collapse;
+        }
+        
+        table,
+        th,
+        td {
+          border: 1px solid black;
+        }
+        
+        input[type=submit] {
+          padding: 3px 15px;
+          background-color: #d8d8d8;
+        }
+        
+        input[type=file] {}
+        
+        ::-ms-browse {
+          background: black;
+          color: red;
+          padding: 1em;
+        }
+        
+        input[type=button] {
+          padding: 3px 15px;
+          background-color: #d8d8d8;
+        }
+        
+        .text-update1 {
+          color: red;
+        }
+        
+        .text-update2 {
+          color: red;
+        }
+        
+        .fileUpload {
+          position: relative;
+          overflow: hidden;
+          width: 40px;
+          border: 1px solid #ccc;
+          background-color: #d8d8d8;
+          box-shadow: inset 0 1px 3px rgba(0, 0, 0, .1);
+          float: right;
+          font-size: 13px;
+          text-align: center;
+          height: 15px;
+          padding: 2px 12px 2px 12px;
+          margin: 5px;
+          background-color: #d8d8d8;
+          border: 1px solid #999999 !important;
+          border-radius: 1px!important;
+        }
+        
+        .fileUpload input[type=file] {
+          position: absolute;
+          top: 0;
+          right: 0;
+          cursor: pointer;
+          opacity: 0;
+          filter: alpha(opacity=0);
+        }
+        
+        .placeholder {
+          display: inline-block;
+          margin-right: 5px;
+          width: 200px;
+          float: left;
+        }
+        
+        .choose {
+          display: inline-block;
+          width: 220px;
+        }
+        
+        .heading-file {
+          text-align: center;
+          height: 30px;
+        }
+      </style>
 
-  <body>
+      <title>Upload</title>
+    </head>
 
-    <div class="leftpanel">
-      <br>
-      <h3>Upload GPS Data</h3>
-      <form id="GPSfileUpload" action="<?=$_SERVER['PHP_SELF'];?>" method="post" enctype="multipart/form-data">
-        <table border=5 width=150 cellpadding=10>
-          <tr>
+    <body>
+
+      <div class="leftpanel">
+        <br>
+        <h3> Animal GPS Location Data File </h3>
+        <form id="GPSfileUpload" action="<?=$_SERVER['PHP_SELF'];?>" method="post" enctype="multipart/form-data">
+          <table border=5 width=150 cellpadding=10>
+            <tr>
+              <td colspan=2>
+                <div class="heading-file">
+                  <h6>Select CSV GPS location file to upload</h6> </div>
+              </td>
+            </tr>
+            <tr>
+              <td colspan=2>
+                <div class="choose">
+                  <input id="uploadFile" placeholder="Choose file.." disabled="disabled" />
+
+                  <div class="fileUpload btn btn-primary">
+                    <span>Select</span>
+                    <input id="uploadBtn" type="file" name="csv" />
+                  </div>
+                </div>
+              </td>
+              <td colspan=1>
+                <input type="submit" name="submit" value="Upload" />
+              </td>
+
+              <td colspan=1>
+                <input type="submit" name="deleteGPS" id="deleteGPSId" value="Delete All" onclick="locationDelete()" />
+              </td>
+            </tr>
+          </table>
+        </form>
+        <br>
+        <div class="text-update1" id="text-update1"></div>
+      </div>
+
+      <div class="rightpanel">
+        <br>
+        <h3> Animal Behaviour Data File </h3>
+        <form id="BehfileUpload" action="<?=$_SERVER['PHP_SELF'];?>" method="post" enctype="multipart/form-data">
+          <table border=5 width=150 cellpadding=10>
             <td colspan=2>
-              <h4>Select <b> GPS </b> file to upload</h4>
+              <div class="heading-file">
+                <h6>Select CSV behaviour file to upload</h6> </div>
             </td>
-          </tr>
-          <tr>
-            <td colspan=2>
-              <input type="file" name="csv">
-            </td>
-            <td colspan=2>
-              <button type="sumbit" name="submit">Upload</button>
-            </td>
+            </tr>
+            <tr>
+              <td colspan=2>
+                <div class="choose">
+                  <input id="uploadFile" placeholder="Choose file.." disabled="disabled" />
 
-            <td colspan=2>
-              <input type="submit" name="deleteGPS" id="deleteGPSId" value="Delete All" onclick="locationDelete()" />
-            </td>
-          </tr>
-        </table>
-      </form>
-      <br>
-      <div id="text-update1"></div>
-    </div>
+                  <div class="fileUpload btn btn-primary">
+                    <span>Select</span>
+                    <input type="file" name="bcsv" id="csv_id" />
+                  </div>
+                </div>
+              </td>
+              <td colspan=2>
+                <input type="submit" name="submit2" value="Upload" />
+              </td>
+              <td colspan=2>
+                <input type="submit" name="deleteBeh" id="bDeleteId" value="Delete All" onclick="behaviourDelete()" />
+              </td>
+            </tr>
+          </table>
+        </form>
+        <br>
+        <div class="text-update2" id="text-update2"></div>
+      </div>
+    </body>
 
-    <div class="rightpanel">
-      <br>
-      <h3>Upload Behaviour Data</h3>
-      <form id="BehfileUpload" action="<?=$_SERVER['PHP_SELF'];?>" method="post" enctype="multipart/form-data">
-        <table border=5 width=150 cellpadding=10>
-          <td colspan=2>
-            <h4>Select <b> Behaviour </b> file to upload</h4>
-          </td>
-          </tr>
-          <tr>
-            <td colspan=2>
-              <input type="file" name="bcsv" id="csv_id">
-            </td>
-            <td colspan=2>
-              <button type="sumbit" name="submit2">Upload</button>
-            </td>
-            <td colspan=2>
-              <input type="submit" name="deleteBeh" id="bDeleteId" value="Delete All" onclick="behaviourDelete()" />
-            </td>
-          </tr>
-        </table>
-      </form>
-      <br>
-      <div id="text-update2"></div>
-    </div>
-  </body>
+    </html>
 
-  </html>
+    <script>
+      document.getElementById("uploadBtn").onchange = function() {
+        document.getElementById("uploadFile").value = this.value;
+      };
+    </script>
 
 
-
-
-  <?php
+    <?php
 
 //load the database configuration file
 include 'dv_dbConnection.php';
@@ -228,8 +342,8 @@ if(isset($_POST['submit'])) {
                     } else {
                         $error = " Warning: " . $gpsData . "<br>" . mysqli_error($con);
                         // fwrite($fileErrors, $error);
-                       // echo $error;
-
+                        // echo $error;
+                        
                         // echo "<span style='color:red;'> <i>".$error."</i></span>";
                     }
                 }
@@ -248,7 +362,9 @@ if(isset($_POST['submit'])) {
         }
     }
     else {
-        echo "Invalid File";
+        echo '<script type="text/javascript">
+        document.getElementById("text-update1").innerHTML = "Error: Invalid GPS file type, please try again! <br>";
+        </script>';
     }
     unlink($filename);
     mysqli_close($con);
@@ -320,8 +436,8 @@ if(isset($_POST['submit2'])) {
                     } else {
                         $error = " Warning: " . $behaviourData . "<br>" . mysqli_error($con). "<br>";
                         // fwrite($fileErrors, $error);
-                       // echo $error;
-
+                        // echo $error;
+                        
                         // echo "<span style='color:red;'> <i>".$error."</i></span>";
                     }
                 }
@@ -339,9 +455,11 @@ if(isset($_POST['submit2'])) {
         }
     }
     else {
-        echo "Invalid File";
+        echo '<script type="text/javascript">
+        document.getElementById("text-update2").innerHTML = "Error: Invalid behaviour file type, please try again! <br>";
+        </script>';
     }
-   // unlink($filename);
+    // unlink($filename);
     mysqli_close($con);
     
 }
@@ -349,10 +467,10 @@ if(isset($_POST['submit2'])) {
 
 if(isset($_POST['deleteGPS'])) {
     $deleteloc = $_POST['deleteGPS'];
-    if($deleteloc == 'Deleted') {  
-        mysqli_query($con, "TRUNCATE location");  
-         echo "<span style='color:green; background-color: white;'> Successfully deleted all <b> location </b> records!</span>";
-
+    if($deleteloc == 'Deleted') {
+        mysqli_query($con, "TRUNCATE location");
+        echo "<span style='color:green; background-color: white;'> Successfully deleted all <b> location </b> records!</span>";
+        
     }
 }
 
@@ -361,9 +479,9 @@ if(isset($_POST['deleteBeh'])) {
     $deletebeh = $_POST['deleteBeh'];
     if($deletebeh == 'Deleted') {
         mysqli_query($con, "TRUNCATE observations");
-
-         echo "<span style='color:green; background-color: white;'> Successfully deleted all <b> observation </b> records!</span>";
-
+        
+        echo "<span style='color:green; background-color: white;'> Successfully deleted all <b> observation </b> records!</span>";
+        
     }
 }
 

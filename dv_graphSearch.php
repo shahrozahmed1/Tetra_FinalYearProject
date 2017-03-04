@@ -1,4 +1,4 @@
-<?php 
+<?php
 ob_start();
 // session_start();
 if(!isset($_SESSION['login_user']))
@@ -10,92 +10,100 @@ if(!isset($_SESSION['login_user']))
 
 ?>
 
-<!DOCTYPE html>
-<html>
+  <!DOCTYPE html>
+  <html>
 
-<head>
-  <style>
-    .filter_nav {
-      background-color: DarkSeaGreen;
-      position: fixed;
-      top: 10%;
-      width: 16%;
-      min-width: 200px;
-      max-height: 595px;
-      border-right: 5px solid #313836;
-      border-left: 2px solid #313836;
-      border-bottom: 5px solid #313836;
-      border-top: 2px solid #313836;
-    }
-    
-    .sidebar {
-      float: left;
-    }
-  </style>
+  <head>
+    <link rel="stylesheet" type="text/css" href="styles/styles.css">
 
-  <title>Tetra</title>
-</head>
+    <!--
 
-<body>
+<style>
+.filter_nav {
+    background-color: DarkSeaGreen;
+    position: fixed;
+    top: 10%;
+    width: 16%;
+    min-width: 200px;
+    max-height: 595px;
+    border-right: 5px solid #313836;
+    border-left: 2px solid #313836;
+    border-bottom: 5px solid #313836;
+    border-top: 2px solid #313836;
+}
 
-  <div class="sidebar">
+.sidebar {
+    float: left;
+}
+-->
+    </style>
 
-    <ul class="filter_nav">
-      <form action="<?= $_SERVER['PHP_SELF']; ?>" method="post" autocomplete="on">
-        
-        <div align="center">
+    <title>Tetra</title>
+  </head>
+
+  <body>
+
+    <div class="sidebar">
+      <form class="map-search" action="<?= $_SERVER['PHP_SELF']; ?>" method="post" autocomplete="on">
+        <div class="top">
           <b> Select Graph Type: </b>
-
+          <br>
           <select name="graph">
             <option value="activity">Activity Budgets</option>
             <option value="altitude">Altitude Usage</option>
             <option value="tree">Tree Usage</option>
           </select>
+
           <input type="submit" name="btnDisplay" value="Display">
         </div>
-        <br>
-        <div align="center">
-          <u><b>Refine by</b></u>
-        </div>
-        <br>
-        <input type="checkbox" name="male" id="maleid" /> Male
-        <br>
-        <input type="checkbox" name="female" id="femaleid" /> Female
-        <br>
-        <br>
-        <b> Date/Time </b>
-        <br> <i> From: </i>
-        <br>
-        <input type="date" name="fdate">
-        <br>
-        <i> To: </i>
-        <br>
-        <input type="date" name="tdate">
-        <br>
-        <br>
-        <div align="center">
-          <button onclick="myFunction()">Print this page</button>
-        </div>
-        <br>
+
+        <div class="refine-by">
+          <h1 class="subtitle">Refine by</h1>
+
+          <ul class="map-type">
+            <li>
+              <label class="control control--checkbox">Male
+                <input type="checkbox" name="male" id="maleid" />
+                <div class="control__indicator"></div>
+              </label>
+            </li>
+
+            <li>
+              <label class="control control--checkbox">Female
+               <input type="checkbox" name="female" id="femaleid" />
+                <div class="control__indicator"></div>
+              </label>
+            </li>
+
+          </ul>
+
+          <div align="left">
+            <h2> Date </h2>
+            <p> From: </p>
+            <input type="date" name="fdate">
+            <p> To: </p>
+            <input type="date" name="tdate">
+          </div>
+          <br>
+          <input type="button" onclick="myFunction()" value="Print this page" />
+          <br>
 
       </form>
+      </div>
+    </div>
 
-    </ul>
+  </body>
 
-  </div>
+  </html>
 
-</body>
-
-</html>
-
-<script>
-  function myFunction() {
-    window.print();
-  }
-</script>
+  <script>
+    function myFunction() {
+      window.print();
+    }
+  </script>
 
 
-<?php
+  <?php
 
 ob_start();
 include("dv_dbConnection.php");
@@ -518,7 +526,7 @@ if (isset($_POST['btnDisplay'])) {
                 FROM location JOIN animal ON animal.animal_Initials=location.location_Animal
                 WHERE location.location_Date <= '$tDate'
                 AND animal.animal_Sex = 'f' GROUP BY animal.animal_Initials";
-
+                
             } else {
                 
                 $sql = "SELECT animal.animal_Name, MAX(location.location_Altitude),
@@ -526,7 +534,7 @@ if (isset($_POST['btnDisplay'])) {
                 FROM location JOIN animal ON animal.animal_Initials=location.location_Animal
                 WHERE location.location_Date <= '$tDate'
                 GROUP BY animal.animal_Initials";
-
+                
             }
             
             
@@ -547,7 +555,7 @@ if (isset($_POST['btnDisplay'])) {
                 FROM location JOIN animal ON animal.animal_Initials=location.location_Animal
                 WHERE location.location_Date >= '$tDate'
                 AND animal.animal_Sex = 'f' GROUP BY animal.animal_Initials";
-
+                
             } else {
                 
                 $sql = "SELECT animal.animal_Name, MAX(location.location_Altitude),
@@ -561,7 +569,7 @@ if (isset($_POST['btnDisplay'])) {
             
         }
         
-  
+        
         $filter = mysqli_query($con, $sql);
         $count = mysqli_num_rows($filter);
         
@@ -634,7 +642,7 @@ SELECT observations.observation_Behaviour, behaviour.behaviour_Details, animal.a
 // COUNT(*) FROM observations
 ?>
 
-  <script>
-    var jsBehArray = <?php echo json_encode($behaviourDB_array); ?>;
-    window.localStorage.setItem("jsBehArray", JSON.stringify(jsBehArray));
-  </script>
+    <script>
+      var jsBehArray = <?php echo json_encode($behaviourDB_array); ?>;
+      window.localStorage.setItem("jsBehArray", JSON.stringify(jsBehArray));
+    </script>

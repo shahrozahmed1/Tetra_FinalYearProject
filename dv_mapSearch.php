@@ -13,32 +13,7 @@ if(!isset($_SESSION['login_user']))
   <html>
 
   <head>
-
-    <style>
-      .filter_nav {
-        background-color: DarkSeaGreen;
-        position: fixed;
-        top: 10%;
-        width: 16%;
-        min-width: 200px;
-        min-height: 595px;
-        max-width: 200px;
-        border-right: 5px solid #313836;
-        border-left: 2px solid #313836;
-        border-bottom: 5px solid #313836;
-        border-top: 2px solid #313836;
-      }
-      
-      .sidebar {
-        float: left;
-      }
-      
-      .errorClass {
-        float: right;
-        background-color: white;
-      }
-    </style>
-
+    <link rel="stylesheet" type="text/css" href="styles/styles.css">
     <title>
       Map Analysis
     </title>
@@ -52,59 +27,55 @@ if(!isset($_SESSION['login_user']))
 </div>
 
 <div class="sidebar">
+<!--<ul class="filter_nav">-->
 
-<ul class="filter_nav">
-
-<form action="<?=$_SERVER['PHP_SELF'];?>" method="post">
-<div align="center">
-<input type="text" name="search" maxlength="3" placeholder "Search for animal.."/>
-    <input type="submit" value="Search" />
+<form class="map-search" action="<?=$_SERVER['PHP_SELF'];?>" method="post">
+<div class="top">
+<input type="text" name="search" maxlength="3" placeholder="Enter animal initials.."/>
+<input type="submit" value="Search" />
 </div>
 
-<br>
-<div align="left">
-<input type="checkbox" name="markers" id="markers" onclick="enableMarkeredTraj()" /> Marked Trajectories
-<br>
-<input type="checkbox" name="clusters" id="clusters" onclick="enableClusters()" /> Marker Clustering
-<br>
-<input type="checkbox" name="heatmap" id="heatmap" onclick="disableAllMarkers()" /> Heatmap
-</div>
+<ul class="map-type">
+<li><label class="control control--checkbox">Marked Trajectories
+<input type="checkbox" name="markers" id="markersid" onclick="enableMarkeredTraj()" />
+<div class="control__indicator"></div></label></li>
+
+<li><label class="control control--checkbox">Marker Clustering
+<input type="checkbox" name="clusters" id="clustersid" onclick="enableClusters()" />
+<div class="control__indicator"></div></label></li>
+
+<li><label class="control control--checkbox">Heatmap
+<input type="checkbox" name="heatmap" id="heatmapid" onclick="disableAllMarkers()" />
+<div class="control__indicator"></div></label></li>
+</ul>
 
 <!-- Align it in the middle of the -->
-<br>
-<div align="center">
-<u><b>Refine by</b></u>
-</div>
+
+<div class="refine-by">
+<h1 class="subtitle">Refine by</h1>
 
 <div align="left">
-<br>
-<b> Date/Time </b>
-<br> <i> From: </i>
-<br>
+<h2> Date/Time </h2>
+<p> From: </p>
 <input type="date" name="fdate">
-<br>
 <input type="time" name="ftime">
-<br>
-<i> To: </i>
-<br>
-<input type="date" name="tdate">
-<br>
-<input type="time" name="ttime">
-<br>
-<br> <b> Altitude </b>
-<br> <i>Min:</i>
-<input type="number" name="minAlt" id="inputMin" min="0" max="5000" maxlength="4">
-<i> &nbsp; Max:</i>
-<input type="number" name="maxAlt" id="inputMax" min="0" max="5000" maxlength="4">
-<br>
-<br>
-</div>
+<p> To: </p>
 
-<div align="center">
-<u><b>  Animal Details </b></u>
-<br>
-<br>
-<table border=1 width=150 cellpadding=0>
+<input type="date" name="tdate">
+
+<input type="time" name="ttime">
+<h2> Altitude </h2>
+<div class="input-wrapper">
+<p>Min:</p>
+<input type="number" name="minAlt" id="inputMin" min="0" max="5000" maxlength="4">
+<p>&nbsp; &nbsp; Max:</p>
+<input type="number" name="maxAlt" id="inputMax" min="0" max="5000" maxlength="4">
+</div>
+</div>
+</div>
+<div class="animal-details">
+<h1 class="subtitle">Animal Details</h1>
+<table border=1 width=160 cellpadding=0>
 <tr>
 <td colspan=2>
 ID: <span id="initialsId" style="color:blue">  </span>
@@ -141,13 +112,10 @@ ID: <span id="initialsId" style="color:blue">  </span>
       </tr>
       </table>
       <br>
-
-      <button onclick="myFunction()">Print this page</button>
+      <input type="button" onclick="myFunction()" value="Print this page" />
     </div>
 
     </form>
-
-    </ul>
 
     </div>
 
@@ -155,35 +123,35 @@ ID: <span id="initialsId" style="color:blue">  </span>
 
   <script>
     function enableMarkeredTraj() {
-      var elem = document.getElementById('markers').checked;
+      var elem = document.getElementById('markersid').checked;
       if (elem == true) {
-        document.getElementById("clusters").disabled = true;
-        document.getElementById("heatmap").disabled = true;
+        document.getElementById("clustersid").disabled = true;
+        document.getElementById("heatmapid").disabled = true;
       } else {
-        document.getElementById("clusters").disabled = false;
-        document.getElementById("heatmap").disabled = false;
+        document.getElementById("clustersid").disabled = false;
+        document.getElementById("heatmapid").disabled = false;
       }
     }
 
     function enableClusters() {
-      var elem = document.getElementById('clusters').checked;
+      var elem = document.getElementById('clustersid').checked;
       if (elem == true) {
-        document.getElementById("markers").disabled = true;
-        document.getElementById("heatmap").disabled = true;
+        document.getElementById("markersid").disabled = true;
+        document.getElementById("heatmapid").disabled = true;
       } else {
-        document.getElementById("markers").disabled = false;
-        document.getElementById("heatmap").disabled = false;
+        document.getElementById("markersid").disabled = false;
+        document.getElementById("heatmapid").disabled = false;
       }
     }
 
     function disableAllMarkers() {
-      var elem = document.getElementById('heatmap').checked;
+      var elem = document.getElementById('heatmapid').checked;
       if (elem == true) {
-        document.getElementById("markers").disabled = true;
-        document.getElementById("clusters").disabled = true;
+        document.getElementById("markersid").disabled = true;
+        document.getElementById("clustersid").disabled = true;
       } else {
-        document.getElementById("markers").disabled = false;
-        document.getElementById("clusters").disabled = false;
+        document.getElementById("markersid").disabled = false;
+        document.getElementById("clustersid").disabled = false;
       }
     }
 
