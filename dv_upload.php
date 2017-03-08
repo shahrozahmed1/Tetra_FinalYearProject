@@ -41,6 +41,14 @@ include 'dv_navigation.php';
 
 
       <style>
+        input[type=text],
+        select {
+          display: inline-block;
+          border: solid 1px #999;
+          border-radius: 2px 2px 5px 5px;
+          box-sizing: border-box;
+        }
+        
         input {
           -webkit-appearance: none;
           -moz-appearance: none;
@@ -60,21 +68,23 @@ include 'dv_navigation.php';
         }
         
         table {
-          border-collapse: collapse;
+          width: 360px;
+          border: 2px solid black;
+          border-radius: 2px;
+          box-shadow: 10px 10px 5px #888888;
         }
         
-        table,
         th,
         td {
-          border: 1px solid black;
+          padding: 8px;
+          text-align: left;
+          border-bottom: 1px solid #ddd;
         }
         
         input[type=submit] {
           padding: 3px 15px;
           background-color: #d8d8d8;
         }
-        
-        input[type=file] {}
         
         ::-ms-browse {
           background: black;
@@ -91,15 +101,22 @@ include 'dv_navigation.php';
           color: red;
         }
         
+        .text-update1-b {
+          color: black;
+        }
+        
         .text-update2 {
           color: red;
+        }
+        
+        .text-update2-b {
+          color: black;
         }
         
         .fileUpload {
           position: relative;
           overflow: hidden;
           width: 40px;
-          border: 1px solid #ccc;
           background-color: #d8d8d8;
           box-shadow: inset 0 1px 3px rgba(0, 0, 0, .1);
           float: right;
@@ -159,7 +176,7 @@ include 'dv_navigation.php';
             <tr>
               <td colspan=2>
                 <div class="choose">
-                  <input id="uploadFile" placeholder="Choose file.." disabled="disabled" />
+                  <input type="text" id="uploadFile" placeholder="Choose file.." disabled="disabled" />
 
                   <div class="fileUpload btn btn-primary">
                     <span>Select</span>
@@ -179,6 +196,7 @@ include 'dv_navigation.php';
         </form>
         <br>
         <div class="text-update1" id="text-update1"></div>
+        <div class="text-update1-b" id="text-update1-b"></div>
       </div>
 
       <div class="rightpanel">
@@ -194,7 +212,7 @@ include 'dv_navigation.php';
             <tr>
               <td colspan=2>
                 <div class="choose">
-                  <input id="uploadFile" placeholder="Choose file.." disabled="disabled" />
+                  <input type="text" id="uploadFile2" placeholder="Choose file.." disabled="disabled" />
 
                   <div class="fileUpload btn btn-primary">
                     <span>Select</span>
@@ -213,6 +231,7 @@ include 'dv_navigation.php';
         </form>
         <br>
         <div class="text-update2" id="text-update2"></div>
+        <div class="text-update2-b" id="text-update2-b"></div>
       </div>
     </body>
 
@@ -221,6 +240,12 @@ include 'dv_navigation.php';
     <script>
       document.getElementById("uploadBtn").onchange = function() {
         document.getElementById("uploadFile").value = this.value;
+      };
+    </script>
+
+    <script>
+      document.getElementById("csv_id").onchange = function() {
+        document.getElementById("uploadFile2").value = this.value;
       };
     </script>
 
@@ -302,7 +327,7 @@ if(isset($_POST['submit'])) {
                 $col1 = $col[0];
                 $col2 = $col[1];
                 $col4 = $col[3];
-                $col5 = $col[4];
+                $col5 = $col[2];
                 $col6 = $col[5];
                 $col7 = $col[6];
                 $col8 = $col[7];
@@ -356,14 +381,13 @@ if(isset($_POST['submit'])) {
             //$textMsg += "Successfully Imported!";
             
             echo '<script type="text/javascript">
-            document.getElementById("text-update1").innerHTML = "Successfully imported GPS data! <br>";
+            document.getElementById("text-update1-b").innerHTML = "Successfully imported <b> GPS location </b> records!";
             </script>';
-            
         }
     }
     else {
         echo '<script type="text/javascript">
-        document.getElementById("text-update1").innerHTML = "Error: Invalid GPS file type, please try again! <br>";
+        document.getElementById("text-update1").innerHTML = "Error: Invalid <b> GPS location </b> file type, please try again! <br>";
         </script>';
     }
     unlink($filename);
@@ -447,16 +471,15 @@ if(isset($_POST['submit2'])) {
             fclose($handle);
             // fclose($fileErrors);
             
-            //$textMsg += "Successfully Imported!";
             echo '<script type="text/javascript">
-            document.getElementById("text-update2").innerHTML = "Successfully imported behaviour data! <br>";
+            document.getElementById("text-update2-b").innerHTML = "Successfully imported <b> behaviour </b> records!";
             </script>';
             
         }
     }
     else {
         echo '<script type="text/javascript">
-        document.getElementById("text-update2").innerHTML = "Error: Invalid behaviour file type, please try again! <br>";
+        document.getElementById("text-update2").innerHTML = "Error: Invalid <b> behaviour </b> file type, please try again! <br>";
         </script>';
     }
     // unlink($filename);
@@ -469,7 +492,11 @@ if(isset($_POST['deleteGPS'])) {
     $deleteloc = $_POST['deleteGPS'];
     if($deleteloc == 'Deleted') {
         mysqli_query($con, "TRUNCATE location");
-        echo "<span style='color:green; background-color: white;'> Successfully deleted all <b> location </b> records!</span>";
+        
+        echo '<script type="text/javascript">
+        document.getElementById("text-update1-b").innerHTML = "Successfully deleted all <b> location </b> records";
+        </script>';
+        
         
     }
 }
@@ -480,7 +507,9 @@ if(isset($_POST['deleteBeh'])) {
     if($deletebeh == 'Deleted') {
         mysqli_query($con, "TRUNCATE observations");
         
-        echo "<span style='color:green; background-color: white;'> Successfully deleted all <b> observation </b> records!</span>";
+        echo '<script type="text/javascript">
+        document.getElementById("text-update2-b").innerHTML = "Successfully deleted all <b> observation </b> records!";
+        </script>';
         
     }
 }

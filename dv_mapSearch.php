@@ -14,6 +14,17 @@ if(!isset($_SESSION['login_user']))
 
   <head>
     <link rel="stylesheet" type="text/css" href="styles/styles.css">
+
+      <style>
+        input[type=text],
+      select {
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 2px 2px 5px 5px;
+        box-sizing: border-box;
+      }
+      </style>
+
     <title>
       Map Analysis
     </title>
@@ -22,100 +33,109 @@ if(!isset($_SESSION['login_user']))
 
   <body>
 
-    <div class="errorClass">
+    <div class="errorClass" align="center">
       <span id="update-text" style="color:red">
-</div>
-
-<div class="sidebar">
-<!--<ul class="filter_nav">-->
-
-<form class="map-search" action="<?=$_SERVER['PHP_SELF'];?>" method="post">
-<div class="top">
-<input type="text" name="search" maxlength="3" placeholder="Enter animal initials.."/>
-<input type="submit" value="Search" />
-</div>
-
-<ul class="map-type">
-<li><label class="control control--checkbox">Marked Trajectories
-<input type="checkbox" name="markers" id="markersid" onclick="enableMarkeredTraj()" />
-<div class="control__indicator"></div></label></li>
-
-<li><label class="control control--checkbox">Marker Clustering
-<input type="checkbox" name="clusters" id="clustersid" onclick="enableClusters()" />
-<div class="control__indicator"></div></label></li>
-
-<li><label class="control control--checkbox">Heatmap
-<input type="checkbox" name="heatmap" id="heatmapid" onclick="disableAllMarkers()" />
-<div class="control__indicator"></div></label></li>
-</ul>
-
-<!-- Align it in the middle of the -->
-
-<div class="refine-by">
-<h1 class="subtitle">Refine by</h1>
-
-<div align="left">
-<h2> Date/Time </h2>
-<p> From: </p>
-<input type="date" name="fdate">
-<input type="time" name="ftime">
-<p> To: </p>
-
-<input type="date" name="tdate">
-
-<input type="time" name="ttime">
-<h2> Altitude </h2>
-<div class="input-wrapper">
-<p>Min:</p>
-<input type="number" name="minAlt" id="inputMin" min="0" max="5000" maxlength="4">
-<p>&nbsp; &nbsp; Max:</p>
-<input type="number" name="maxAlt" id="inputMax" min="0" max="5000" maxlength="4">
-</div>
-</div>
-</div>
-<div class="animal-details">
-<h1 class="subtitle">Animal Details</h1>
-<table border=1 width=160 cellpadding=0>
-<tr>
-<td colspan=2>
-ID: <span id="initialsId" style="color:blue">  </span>
-      </td>
-      </tr>
-      <tr>
-        <td colspan=2>
-          Name: <span id="nameId" style="color:blue">  </span>
-        </td>
-      </tr>
-      <tr>
-        <td colspan=2>
-          Sex:
-          <span id="sexId" style="color:blue">  </span>
-        </td>
-      </tr>
-      <tr>
-        <td colspan=2>
-          Age Category:
-          <span id="ageCatId" style="color:blue">  </span>
-        </td>
-      </tr>
-      <tr>
-        <td colspan=2>
-          Mother:
-          <span id="motherId" style="color:blue">  </span>
-        </td>
-      </tr>
-      <tr>
-        <td colspan=2>
-          Partner:
-          <span id="partnerId" style="color:blue">  </span>
-        </td>
-      </tr>
-      </table>
-      <br>
-      <input type="button" onclick="myFunction()" value="Print this page" />
+</span>
     </div>
 
-    </form>
+    <div class="sidebar">
+      <!--<ul class="filter_nav">-->
+
+      <form class="map-search" action="<?=$_SERVER['PHP_SELF'];?>" method="post">
+        <div class="top">
+          <input type="text" name="search" maxlength="3" placeholder="Enter animal initials.." />
+          <input type="submit" value="Search" />
+        </div>
+
+        <ul class="map-type">
+          <li>
+            <label class="control control--checkbox">Marked Trajectories
+              <input type="checkbox" name="markers" id="markersid" onclick="enableMarkeredTraj()" />
+              <div class="control__indicator"></div>
+            </label>
+          </li>
+
+          <li>
+            <label class="control control--checkbox">Marker Clustering
+              <input type="checkbox" name="clusters" id="clustersid" onclick="enableClusters()" />
+              <div class="control__indicator"></div>
+            </label>
+          </li>
+
+          <li>
+            <label class="control control--checkbox">Heatmap
+              <input type="checkbox" name="heatmap" id="heatmapid" onclick="disableAllMarkers()" />
+              <div class="control__indicator"></div>
+            </label>
+          </li>
+        </ul>
+
+        <!-- Align it in the middle of the -->
+
+        <div class="refine-by">
+          <h1 class="subtitle">Refine by</h1>
+
+          <div align="left">
+            <h2> Date/Time </h2>
+            <p> From: </p>
+            <input type="date" name="fdate">
+            <input type="time" name="ftime">
+            <p> To: </p>
+
+            <input type="date" name="tdate">
+            <input type="time" name="ttime">
+            <h2> Altitude </h2>
+            <div class="input-wrapper">
+              <p>Min:</p>
+              <input type="number" name="minAlt" id="inputMin" min="0" max="5000" maxlength="4">
+              <p>&nbsp; &nbsp; Max:</p>
+              <input type="number" name="maxAlt" id="inputMax" min="0" max="5000" maxlength="4">
+            </div>
+          </div>
+        </div>
+        <div class="animal-details">
+          <h1 class="subtitle">Animal Details</h1>
+          <table border=1 width=160 cellpadding=0>
+            <tr>
+              <td colspan=2>
+                ID: <span id="initialsId" style="color:blue">  </span>
+              </td>
+            </tr>
+            <tr>
+              <td colspan=2>
+                Name: <span id="nameId" style="color:blue">  </span>
+              </td>
+            </tr>
+            <tr>
+              <td colspan=2>
+                Sex:
+                <span id="sexId" style="color:blue">  </span>
+              </td>
+            </tr>
+            <tr>
+              <td colspan=2>
+                Age Category:
+                <span id="ageCatId" style="color:blue">  </span>
+              </td>
+            </tr>
+            <tr>
+              <td colspan=2>
+                Mother:
+                <span id="motherId" style="color:blue">  </span>
+              </td>
+            </tr>
+            <tr>
+              <td colspan=2>
+                Partner:
+                <span id="partnerId" style="color:blue">  </span>
+              </td>
+            </tr>
+          </table>
+          <br>
+          <input type="button" onclick="myFunction()" value="Print this page" />
+        </div>
+
+      </form>
 
     </div>
 

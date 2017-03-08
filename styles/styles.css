@@ -270,13 +270,19 @@ tr:hover {
     position: absolute;
     top: 2px;
     left: 0;
-    width: 20px;
-    height: 20px;
-    background: #e6e6e6;
+    width: 21px;
+    height: 21px;
+    background: white;
+    border: 1px solid #999999 !important;
+    ;
 }
 
 .control--radio .control__indicator {
     border-radius: 50%;
+}
+
+.control--checkbox .control__indicator {
+    border-radius: 25%;
 }
 
 

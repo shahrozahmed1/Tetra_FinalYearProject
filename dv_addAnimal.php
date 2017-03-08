@@ -20,8 +20,10 @@ include('dv_navigation.php');
 
     <style>
       table {
-        border-collapse: collapse;
-        width: 100%;
+        width: 300px;
+        border: 1px solid black;
+        border-radius: 5px;
+        box-shadow: 10px 10px 5px #888888;
       }
       
       th,
@@ -29,128 +31,137 @@ include('dv_navigation.php');
         padding: 8px;
         text-align: left;
         border-bottom: 1px solid #ddd;
+        background-color: #f2f2f2;
       }
       
-      tr:hover {
-        background-color: #f5f5f5
+      input[type=text],
+      select {
+        display: inline-block;
+        border: solid 1px #999;
+        border-radius: 2px 2px 5px 5px;
+        box-sizing: border-box;
       }
-
+      
+      .error-msg {
+        margin-top: 5;
+      }
     </style>
 
     <title>Insert Animal Data</title>
   </head>
 
   <body>
-    <h3>Insert New Animal</h3>
 
-    <form class="insert-animal-frm" name="animal_form" action="<?= $_SERVER['PHP_SELF']; ?>" method="post">
-      <table border=5 width=150 cellpadding=10>
-        <tr>
-          <td colspan=2>
-            <b>Initials</b>
-          </td>
-          <td colspan=2>
-            <input class="text-length" type="text" maxlength="3" name="animal_initials_id">
-          </td>
-        </tr>
+    <div class="error-msg" align="center">
+      <span id="update-text" style="color:black;">  </span>
+      <span id="update-text2" style="color:red;">  </span>
+    </div>
 
-        <tr>
-          <td colspan=2>
-            <b>Name</b>
-          </td>
-          <td colspan=2>
-            <input class="text-length" type="text" maxlength="11" name="animal_name_id">
-          </td>
-        </tr>
+    <div class="body-table" align="center">
+      <h3> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Insert New Animal</h3>
 
-        <tr>
-          <td colspan=2>
-            <b>Sex</b>
-          </td>
-          <td colspan=2>
+      <form class="insert-animal-frm" name="animal_form" action="<?= $_SERVER['PHP_SELF']; ?>" method="post">
+        <table border=5 width=150 cellpadding=10>
+          <tr>
+            <td colspan=2>
+              <b>Initials</b>
+            </td>
+            <td colspan=2>
+              <input class="text-length" type="text" maxlength="3" name="animal_initials_id" placeholder="Animal ID">
+            </td>
+          </tr>
 
-            <label class="control control--radio">Male
-              <input type="radio" name="sex_id" id="m_id" value="m">
-              <div class="control__indicator"></div>
-            </label>
+          <tr>
+            <td colspan=2>
+              <b>Name</b>
+            </td>
+            <td colspan=2>
+              <input class="text-length" type="text" maxlength="15" name="animal_name_id" placeholder="Animal Name">
+            </td>
+          </tr>
+
+          <tr>
+            <td colspan=2>
+              <b>Sex</b>
+            </td>
+            <td colspan=2>
+
+              <label class="control control--radio">Male
+                <input type="radio" name="sex_id" id="m_id" value="m">
+                <div class="control__indicator"></div>
+              </label>
 
 
-            <label class="control control--radio">Female
-              <input type="radio" name="sex_id" id="f_id" value="f">
-              <div class="control__indicator"></div>
-            </label>
+              <label class="control control--radio">Female
+                <input type="radio" name="sex_id" id="f_id" value="f">
+                <div class="control__indicator"></div>
+              </label>
 
 
-            <label class="control control--radio">Unknown
-              <input type="radio" name="sex_id" value="u" id="un_id">
-              <div class="control__indicator"></div>
-            </label>
+              <label class="control control--radio">Unknown
+                <input type="radio" name="sex_id" value="u" id="un_id">
+                <div class="control__indicator"></div>
+              </label>
 
-          </td>
-        </tr>
+            </td>
+          </tr>
 
-        <tr>
-          <td colspan=2>
-            <b>Age Category</b>
-          </td>
-          <td colspan=2>
-            <select name="age_id">
-              <option value="adult">Adult</option>
-              <option value="juvenile">Juvenile</option>
-              <option value="infant">Infant</option>
-              <option value="unknown">Unknown</option>
-            </select>
-          </td>
-        </tr>
+          <tr>
+            <td colspan=2>
+              <b>Age Category</b>
+            </td>
+            <td colspan=2>
+              <select name="age_id">
+                <option value="adult">Adult</option>
+                <option value="juvenile">Juvenile</option>
+                <option value="infant">Infant</option>
+                <option value="unknown">Unknown</option>
+              </select>
+            </td>
+          </tr>
 
-        <tr>
-          <td colspan=2>
-            <b>Status</b>
-          </td>
-          <td colspan=2>
-            <select name="status_id">
-              <option value="Collared">Collared</option>
-              <option value="Uncollared">Uncollared</option>
-              <option value="Deceased">Deceased</option>
-            </select>
-          </td>
-        </tr>
+          <tr>
+            <td colspan=2>
+              <b>Status</b>
+            </td>
+            <td colspan=2>
+              <select name="status_id">
+                <option value="Collared">Collared</option>
+                <option value="Uncollared">Uncollared</option>
+                <option value="Deceased">Deceased</option>
+              </select>
+            </td>
+          </tr>
 
-        <tr>
-          <td colspan=2>
-            <b>Mother</b>
-          </td>
-          <td colspan=2>
-            <input class="text-length" type="text" maxlength="11" name="animal_mother_id">
-          </td>
-        </tr>
+          <tr>
+            <td colspan=2>
+              <b>Mother</b>
+            </td>
+            <td colspan=2>
+              <input class="text-length" type="text" maxlength="15" name="animal_mother_id" placeholder="Mother Name">
+            </td>
+          </tr>
 
-        <tr>
-          <td colspan=2>
-            <b>Social Partner</b>
-          </td>
-          <td colspan=2>
-            <input class="text-length" type="text" maxlength="11" name="animal_partner_id">
-          </td>
-        </tr>
-        <tr>
-          <td colspan=2>
-          </td>
-          <td colspan=2>
-            <input class="button" type="submit" name="deleteBtn" value="Delete">
-            <input class="button" type="submit" name="addBtn" value="Add">
-          </td>
-        </tr>
-      </table>
-    </form>
+          <tr>
+            <td colspan=2>
+              <b>Social Partner</b>
+            </td>
+            <td colspan=2>
+              <input class="text-length" type="text" maxlength="15" name="animal_partner_id" placeholder="Partner Name">
+            </td>
+          </tr>
+          <tr>
+            <td colspan=2>
+            </td>
+            <td colspan=2>
+              <input class="button" type="submit" name="addBtn" value="Add">
+              <input class="button" type="submit" name="deleteBtn" value="Delete">
+            </td>
+          </tr>
+        </table>
+      </form>
 
-    <br>
-    <div>
-      <span id="update-text" style="color:green">  </span>
-      <span id="update-text2" style="color:red">  </span>
-      <i>
-<div id="text-update3"></div>
-</i>
+    </div>
 
     </div>
 
@@ -185,22 +196,40 @@ if (isset($_POST['addBtn'])) {
     
     
     if( $initials == "" || $name == "" || $sex == "" ) {
-        
+        $print;
         if(empty($initials)){
-            echo "<span style='color:red; background-color: white;'>  Warning: 'Animal Initials' cannot be empty and must be unique!</span>";
+            $print = "Warning: <b> Animal Initials </b> cannot be empty and must be unique!";
         }
         else if(empty($name)) {
-            echo "<span style='color:red; background-color: white;'>  Warning: 'Animal Name' cannot be empty!</span>";
+            $print = "Warning: <b> Animal Name </b> cannot be empty!";
         }
         else if(empty($sex)) {
-            echo "<span style='color:red; background-color: white;'>  Warning: 'Animal Sex' must be selected!</span>";
+            $print = "Warning: <b> Animal Sex </b> must be selected!";
             
         }
         
+        echo "
+        <script>
+        document.getElementById('update-text2').innerHTML = '".sprintf($print)."';
+        </script>
+        ";
+        
+        
     } else {
         
+        $lower_initials = strtolower($initials);
+        
+        $lower_name = strtolower($name);
+        $name = str_replace(' ', '_', $lower_name);
+        
+        $lower_mother = strtolower($mother);
+        $mother = str_replace(' ', '_', $lower_mother);
+        
+        $lower_partner = strtolower($partner);
+        $partner = str_replace(' ', '_', $lower_partner);
+        
         $sql = "INSERT INTO animal(animal_initials, animal_Name, animal_Sex, animal_Category,
-        animal_Status, animal_Mother, animal_Partner) VALUES('" . $initials . "',
+        animal_Status, animal_Mother, animal_Partner) VALUES('" . $lower_initials . "',
         '" . $name . "','" . $sex . "', '" . $age . "','" . $status . "','" . $mother . "',
         '" . $partner . "')";
         
@@ -208,14 +237,19 @@ if (isset($_POST['addBtn'])) {
             
             echo "
             <script>
-            document.getElementById('update-text').innerHTML = '<b>".$initials."</b> has been successfully added!';
+            document.getElementById('update-text').innerHTML = '<b>".$lower_name."</b> has been added successfully!';
             </script>
             ";
             
         } else {
             
             $error = mysqli_error($con);
-            echo "<font color='red'>Error: " .$error.". Please try again! </font>";
+            echo "
+            <script>
+            document.getElementById('update-text2').innerHTML = 'Error: ".sprintf($error)." Please try again!';
+            </script>
+            ";
+            
             
         }
         
@@ -226,13 +260,21 @@ if (isset($_POST['addBtn'])) {
 else if (isset($_POST['deleteBtn'])) {
     
     if(empty($initials)){
-        die("<font color='red'>Warning: Animal initials must be provided in order to delete a record! </font>");
+        die("
+        <script>
+        document.getElementById('update-text2').innerHTML = 'Warning: <b> Animal initials </b> must be provided in order to delete a record!';
+        </script>
+        ");
+        
+        
     }
     
-    $sql = 'DELETE FROM animal
-    WHERE animal_Initials = "'.$initials.'"';
+    $lower_initials = strtolower($initials);
     
-    $result = $con->query('SELECT animal_Initials FROM animal WHERE animal_Initials = "'.$initials.'"');
+    $sql = 'DELETE FROM animal
+    WHERE animal_Initials = "'.$lower_initials.'"';
+    
+    $result = $con->query('SELECT animal_Initials FROM animal WHERE animal_Initials = "'.$lower_initials.'"');
     
     $row_cnt = $result->num_rows;
     
@@ -241,12 +283,19 @@ else if (isset($_POST['deleteBtn'])) {
     if($row_cnt > 0)
     {
         $retval = mysqli_query($con, $sql);
-        echo "<span style='color:green; background-color: white;'>  '<b>".$initials."</b>' has been deleted successfull!</span>";
+        echo "
+        <script>
+        document.getElementById('update-text').innerHTML = '<b>".$lower_initials."</b> has been deleted successfully!';
+        </script>
+        ";
     }
     else
     {
-        
-        echo "<span style='color:red; background-color: white;'>  Error: '<b>".$initials."</b>' could not be found, please try again!</span>";
+        echo "
+        <script>
+        document.getElementById('update-text2').innerHTML = 'Error: <b>".$lower_initials."</b> could not be found, please try again!';
+        </script>
+        ";
         
     }
     

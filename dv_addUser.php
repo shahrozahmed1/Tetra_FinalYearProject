@@ -20,8 +20,10 @@ include('dv_navigation.php');
 
     <style>
       table {
-        border-collapse: collapse;
-        width: 20%;
+        width: 360px;
+        border: 1px solid black;
+        border-radius: 5px;
+        box-shadow: 10px 10px 5px #888888;
       }
       
       th,
@@ -29,10 +31,27 @@ include('dv_navigation.php');
         padding: 8px;
         text-align: left;
         border-bottom: 1px solid #ddd;
+        background-color: #f2f2f2;
       }
       
-      tr:hover {
-        background-color: #f5f5f5
+      input[type=text],
+      select {
+        display: inline-block;
+        border: solid 1px #999;
+        border-radius: 2px 2px 5px 5px;
+        box-sizing: border-box;
+      }
+      
+      input[type=password],
+      select {
+        display: inline-block;
+        border: solid 1px #999;
+        border-radius: 2px 2px 5px 5px;
+        box-sizing: border-box;
+      }
+      
+      .error-msg {
+        margin-top: 5;
       }
     </style>
 
@@ -40,59 +59,59 @@ include('dv_navigation.php');
   </head>
 
   <body>
-    <h3>Insert New User</h3>
-    <form name="insert-animal-frm" action="<?= $_SERVER['PHP_SELF']; ?>" method="post">
-      <table border=5 width=150 cellpadding=10>
 
-        <tr>
-          <td colspan=2>
-            <b>Account Username</b>
-          </td>
-          <td colspan=2>
-            <input class="text-length" type="text" maxlength="11" name="account_username">
-          </td>
-        </tr>
+    <div class="error-msg" align="center">
+      <span id="update-text" style="color:black;">  </span>
+      <span id="update-text2" style="color:red;">  </span>
+    </div>
 
-        <tr>
-          <td colspan=2>
-            <b>Account Password</b>
-          </td>
-          <td colspan=2>
-            <input class="text-length" type="password" maxlength="11" name="account_password">
-          </td>
-        </tr>
+    <div class="body-table" align="center">
+      <h3>Insert New User</h3>
+      <form name="insert-animal-frm" action="<?= $_SERVER['PHP_SELF']; ?>" method="post">
+        <table border=5 width=150 cellpadding=10>
 
-        <tr>
+          <tr>
+            <td colspan=2>
+              <b>Account Username</b>
+            </td>
+            <td colspan=2>
+              <input class="text-length" type="text" maxlength="20" name="account_username" placeholder="Username">
+            </td>
+          </tr>
+
+          <tr>
+            <td colspan=2>
+              <b>Account Password</b>
+            </td>
+            <td colspan=2>
+              <input class="text-length" type="password" maxlength="15" name="account_password" placeholder="Password">
+            </td>
+          </tr>
+
+          <tr>
+            <td colspan=2>
+              <b>Administrative Rights</b>
+            </td>
+            <td colspan=2>
+              <label class="control control--checkbox">Enable
+                <input type="checkbox" name="permissions" id="perm_id" value="yes"/>
+                <div class="control__indicator"></div>
+              </label>
+
+              <br>
+            </td>
+          </tr>
+
           <td colspan=2>
-            <b>Administrative Rights</b>
           </td>
           <td colspan=2>
-            <label class="control control--checkbox">Enable
-              <input type="checkbox" name="permissions" id="perm_id" />
-              <div class="control__indicator"></div>
-            </label>
-
-            <br>
-          </td>
-        </tr>
-
-        <td colspan=2>
-        </td>
-        <td colspan=2>
-          <input class="button" type="submit" name="deleteBtn" value="Delete">
           <input class="button" type="submit" name="addBtn" value="Create">
-        </td>
-        </tr>
-      </table>
-    </form>
-
-    <br>
-    <div>
-      <span id="update-text" style="color:green">  </span>
-      <span id="update-text2" style="color:red">  </span>
-      <i>
-<div id="text-update3"></div>
-</i>
+            <input class="button" type="submit" name="deleteBtn" value="Delete">
+            
+          </td>
+          </tr>
+        </table>
+      </form>
 
     </div>
 
@@ -117,36 +136,49 @@ if (isset($_POST['addBtn'])) {
     $password = $_POST['account_password'];
     $permission = $_POST['permissions'];
     $perm = false;
-    if ($permission == on) {
+    if ($permission == "yes") {
         $permission_bool = true;
     }
     
     if( $name == "" || $password == "" ) {
-        
+        $print_it;
         if(empty($name)){
-            echo "<span style='color:red; background-color: white;'>  Warning: 'Account Username' cannot be empty and must be unique!</span>";
+            $print_it =  "Warning: <b> Account Username </b> cannot be empty and must be unique";
         }
         else if(empty($password)){
-            echo "<span style='color:red; background-color: white;'>  Warning: 'Account Password' cannot be empty!</span>";
+            $print_it = "Warning: <b> Account Password </b> cannot be empty";
         }
+        
+        echo "
+        <script>
+        document.getElementById('update-text2').innerHTML = '".$print_it.", please try again!';
+        </script>
+        ";
         
     } else {
         
-        $sql = "INSERT INTO account(account_name, account_password, admin_permission) VALUES('" . $name . "',
+        $lower_username = strtolower($name);
+        
+        $sql = "INSERT INTO account(account_name, account_password, admin_permission) VALUES('" . $lower_username . "',
         '" . $password . "','" . $permission_bool . "')";
         
         if (mysqli_query($con, $sql)){
             
             echo "
             <script>
-            document.getElementById('update-text').innerHTML = '<b>".$name."</b> has been successfully added!';
+            document.getElementById('update-text').innerHTML = '<b>".$lower_username."</b> has been added successfully!';
             </script>
             ";
             
         } else {
             
             $error = mysqli_error($con);
-            echo "<font color='red'>Error: " .$error.". Please try again! </font>";
+            
+            echo "
+            <script>
+            document.getElementById('update-text2').innerHTML = 'Error: <b>".$error."</b>, Please try again!';
+            </script>
+            ";
             
         }
         
@@ -156,14 +188,23 @@ if (isset($_POST['addBtn'])) {
 }
 else if (isset($_POST['deleteBtn'])) {
     
+    $name = $_POST['account_username'];
+    
     if(empty($name)){
-        die("<font color='red'>Warning:  'Account Username' must be provided in order to delete a user record! </font>");
+        die("
+        <script>
+        document.getElementById('update-text2').innerHTML = 'Warning: <b> Account Username </b> must be provided in order to delete a user record!';
+        </script>
+        ");
     }
     
-    $sql = 'DELETE FROM account
-    WHERE account_name = "'.$name.'"';
     
-    $result = $con->query('SELECT account_name FROM account WHERE account_name = "'.$name.'"');
+    $lower_username = strtolower($name);
+    
+    $sql = 'DELETE FROM account
+    WHERE account_name = "'.$lower_username.'"';
+    
+    $result = $con->query('SELECT account_name FROM account WHERE account_name = "'.$lower_username.'"');
     
     $row_cnt = $result->num_rows;
     
@@ -171,15 +212,24 @@ else if (isset($_POST['deleteBtn'])) {
     
     if($row_cnt > 0)
     {
-        $retval = mysqli_query($con, $sql);
-        echo "<span style='color:green; background-color: white;'>  '<b>".$name."</b>' has been deleted successfull!</span>";
+      $retval = mysqli_query($con, $sql);
+        echo "
+        <script>
+        document.getElementById('update-text').innerHTML = '<b>".$lower_username."</b> has been deleted successfully!';
+        </script>
+        ";
     }
     else
     {
         
-        echo "<span style='color:red; background-color: white;'>  Error: '<b>".$name."</b>' could not be found, please try again!</span>";
+        echo "
+        <script>
+        document.getElementById('update-text2').innerHTML = 'Error: <b>".$lower_username."</b> could not be found, please try again!';
+        </script>
+        ";
         
     }
+    
     
 }
 

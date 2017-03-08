@@ -17,8 +17,6 @@ if(!isset($_SESSION['login_user']))
     <link rel="stylesheet" type="text/css" href="styles/styles.css">
 
     <!--
-
-<style>
 .filter_nav {
     background-color: DarkSeaGreen;
     position: fixed;
@@ -36,12 +34,30 @@ if(!isset($_SESSION['login_user']))
     float: left;
 }
 -->
+
+    <style>
+      input[type=text],
+      select {
+        width: 40%;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+      }
+      
+
     </style>
 
     <title>Tetra</title>
   </head>
 
   <body>
+
+    <div class="errorClass" align="center">
+      <span id="update-text" style="color:red">
+</span>
+    </div>
 
     <div class="sidebar">
       <form class="map-search" action="<?= $_SERVER['PHP_SELF']; ?>" method="post" autocomplete="on">
@@ -70,7 +86,7 @@ if(!isset($_SESSION['login_user']))
 
             <li>
               <label class="control control--checkbox">Female
-               <input type="checkbox" name="female" id="femaleid" />
+                <input type="checkbox" name="female" id="femaleid" />
                 <div class="control__indicator"></div>
               </label>
             </li>
@@ -263,7 +279,7 @@ if (isset($_POST['btnDisplay'])) {
         $details[0] = 0;
         
         if ($count == 0) {
-            $output = 'No results found...!';
+            $output = 'Error: No results could be found, please try again!';
         } else {
             
             $behaviour_id_array = array();
@@ -417,7 +433,7 @@ if (isset($_POST['btnDisplay'])) {
         $details[0] = 0;
         
         if ($count == 0) {
-            $output = 'No results found....!';
+            $output = 'Error: No results could be found, please try again!';
         } else {
             
             $behaviour_tree_array = array();
@@ -577,7 +593,7 @@ if (isset($_POST['btnDisplay'])) {
         $details = array();
         
         if ($count == 0) {
-            $output = 'No results found....!';
+            $output = 'Error: No results could be found, please try again!';
         } else {
             
             $animal_name_array = array();
@@ -616,7 +632,13 @@ if (isset($_POST['btnDisplay'])) {
     }
     
     // echo if no result found
-    echo $output;
+    //echo $output;
+    
+    echo "
+    <script>
+    document.getElementById('update-text').innerHTML = '".$output."';
+    </script>
+    ";
     
 }
 
