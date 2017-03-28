@@ -94,7 +94,7 @@ include('dv_navigation.php');
             </td>
             <td colspan=2>
               <label class="control control--checkbox">Enable
-                <input type="checkbox" name="permissions" id="perm_id" value="yes"/>
+                <input type="checkbox" name="permissions" id="perm_id" value="yes" />
                 <div class="control__indicator"></div>
               </label>
 
@@ -105,9 +105,9 @@ include('dv_navigation.php');
           <td colspan=2>
           </td>
           <td colspan=2>
-          <input class="button" type="submit" name="addBtn" value="Create">
+            <input class="button" type="submit" name="addBtn" value="Create">
             <input class="button" type="submit" name="deleteBtn" value="Delete">
-            
+
           </td>
           </tr>
         </table>
@@ -162,25 +162,46 @@ if (isset($_POST['addBtn'])) {
         $sql = "INSERT INTO account(account_name, account_password, admin_permission) VALUES('" . $lower_username . "',
         '" . $password . "','" . $permission_bool . "')";
         
-        if (mysqli_query($con, $sql)){
+        
+        $result = $con->query('SELECT account_name FROM account WHERE account_name = "'.$lower_username.'"');
+        $row_cnt = $result->num_rows;
+        
+        // Check if it is unique added user
+        if($row_cnt == 0)
+        {
+            
+            if (mysqli_query($con, $sql)){
+                
+                echo "
+                <script>
+                document.getElementById('update-text').innerHTML = '<b>".$lower_username."</b> has been added successfully!';
+                </script>
+                ";
+                
+            } else {
+                
+                $error = mysqli_error($con);
+                
+                echo "
+                <script>
+                document.getElementById('update-text2').innerHTML = 'Error: <b>".$error."</b>, Please try again!';
+                </script>
+                ";
+                
+            }
+            
+        }
+        else
+        {
             
             echo "
             <script>
-            document.getElementById('update-text').innerHTML = '<b>".$lower_username."</b> has been added successfully!';
-            </script>
-            ";
-            
-        } else {
-            
-            $error = mysqli_error($con);
-            
-            echo "
-            <script>
-            document.getElementById('update-text2').innerHTML = 'Error: <b>".$error."</b>, Please try again!';
+            document.getElementById('update-text2').innerHTML = 'Error: Username already exist in the system, please try again!';
             </script>
             ";
             
         }
+        
         
     }
     
@@ -212,7 +233,7 @@ else if (isset($_POST['deleteBtn'])) {
     
     if($row_cnt > 0)
     {
-      $retval = mysqli_query($con, $sql);
+        $retval = mysqli_query($con, $sql);
         echo "
         <script>
         document.getElementById('update-text').innerHTML = '<b>".$lower_username."</b> has been deleted successfully!';

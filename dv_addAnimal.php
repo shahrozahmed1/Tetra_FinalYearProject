@@ -233,25 +233,41 @@ if (isset($_POST['addBtn'])) {
         '" . $name . "','" . $sex . "', '" . $age . "','" . $status . "','" . $mother . "',
         '" . $partner . "')";
         
-        if (mysqli_query($con, $sql)){
+        // CHECK IF ITS UNIQUE BEFORE INSERTION
+        $result = $con->query('SELECT animal_Initials FROM animal WHERE animal_Initials
+        = "'.$lower_initials.'"');
+        $row_cnt = $result->num_rows;
+        if($row_cnt == 0)
+        {
             
-            echo "
-            <script>
-            document.getElementById('update-text').innerHTML = '<b>".$lower_name."</b> has been added successfully!';
-            </script>
-            ";
-            
-        } else {
-            
-            $error = mysqli_error($con);
-            echo "
-            <script>
-            document.getElementById('update-text2').innerHTML = 'Error: ".sprintf($error)." Please try again!';
-            </script>
-            ";
-            
-            
+            if (mysqli_query($con, $sql)){
+                
+                echo "
+                <script>
+                document.getElementById('update-text').innerHTML = '<b>".$lower_name."</b> has been added successfully!';
+                </script>
+                ";
+                
+            } else {
+                
+                $error = mysqli_error($con);
+                echo "
+                <script>
+                document.getElementById('update-text2').innerHTML = 'Error: ".sprintf($error)." Please try again!';
+                </script>
+                ";
+                
+            }
         }
+        else
+        {
+            echo "
+            <script>
+            document.getElementById('update-text2').innerHTML = 'Error: Animal with that ID already exist in the system, please try again!';
+            </script>
+            ";
+        }
+        
         
     }
     
@@ -265,8 +281,6 @@ else if (isset($_POST['deleteBtn'])) {
         document.getElementById('update-text2').innerHTML = 'Warning: <b> Animal initials </b> must be provided in order to delete a record!';
         </script>
         ");
-        
-        
     }
     
     $lower_initials = strtolower($initials);
@@ -274,11 +288,9 @@ else if (isset($_POST['deleteBtn'])) {
     $sql = 'DELETE FROM animal
     WHERE animal_Initials = "'.$lower_initials.'"';
     
-    $result = $con->query('SELECT animal_Initials FROM animal WHERE animal_Initials = "'.$lower_initials.'"');
-    
+    $result = $con->query('SELECT animal_Initials FROM animal WHERE animal_Initials
+    = "'.$lower_initials.'"');
     $row_cnt = $result->num_rows;
-    
-    //    printf("Result set has %d rows.\n", $row_cnt);
     
     if($row_cnt > 0)
     {
